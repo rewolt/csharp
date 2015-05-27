@@ -1,2 +1,3 @@
 Hi everyone,
-this repo is a group of my projects in C# and become to lern how to manage repo via tortoise git.
+This repo is a collection of all my previous projects wrote in C#. It was established in order to protect my work from accidental deletion.
+Thanks to this, I learn the manual of TortoiseGIT.
