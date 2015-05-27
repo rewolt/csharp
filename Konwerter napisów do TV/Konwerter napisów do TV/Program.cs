@@ -283,7 +283,7 @@ namespace Konwerter_napisow
         static void WypiszNaglowek()
         {
             Console.WriteLine("|| ------------------------------------------------------------------ ||");
-            Console.WriteLine("||                   Konwerter napisów do TV v2.2.1                   ||");
+            Console.WriteLine("||                   Konwerter napisów do TV v2.3                     ||");
             Console.WriteLine("|| ------------------------------------------------------------------ ||");
             Console.WriteLine();
         }
