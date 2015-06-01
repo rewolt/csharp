@@ -1,0 +1,30 @@
+﻿<Window x:Class="Ćwicz_KURWA_.WyborCwiczen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wybór ćwiczeń" Height="390" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Dostępne ćwiczenia" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Wybrane ćwiczenia" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        
+        <ListView x:Name="LWybieranych" HorizontalAlignment="Left" Height="250" Margin="10,50,0,0" VerticalAlignment="Top" Width="270">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="LWybieranych_cwiczenie" Header="Ćwiczenie" Width="Auto" />
+                    <GridViewColumn x:Name="LWybieranych_czasAll" Header="Czas całkowity" Width="Auto"/>
+                    <GridViewColumn x:Name="LWybieranych_pojCzasy" Header="Pojedyncze czasy" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Name="LWybranych" HorizontalAlignment="Left" Height="250" Margin="300,50,0,0" VerticalAlignment="Top" Width="270">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ćwiczenie" Width="Auto" />
+                    <GridViewColumn Header="Czas całkowity" Width="Auto"/>
+                    <GridViewColumn Header="Pojedyncze czasy" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="ok" Content="OK" HorizontalAlignment="Left" Margin="253,319,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

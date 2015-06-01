@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLtoJSON", "XMLtoJSON\XMLtoJSON.csproj", "{BD2AD4FB-495C-4067-A777-305C8A54586A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLtoJSON", "XMLtoJSON\XMLtoJSON.csproj", "{7DE046C4-2D99-488A-8143-0ABAA2D121B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BD2AD4FB-495C-4067-A777-305C8A54586A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD2AD4FB-495C-4067-A777-305C8A54586A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD2AD4FB-495C-4067-A777-305C8A54586A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD2AD4FB-495C-4067-A777-305C8A54586A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE046C4-2D99-488A-8143-0ABAA2D121B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE046C4-2D99-488A-8143-0ABAA2D121B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE046C4-2D99-488A-8143-0ABAA2D121B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE046C4-2D99-488A-8143-0ABAA2D121B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

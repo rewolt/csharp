@@ -11,60 +11,66 @@ namespace Zmiana_nazw_plików_i_katalogów
     {
         static void Main(string[] args)
         {
+            // ZAŁOŻENIA: Program ma zmieniać nazwy katalogów. Zmiana nazwy katalogu wiąże się ze zmianą ścieżki dostępu
+            // do katalogu weenątrz zmienianego katalogu. Wymusza to rozpoczęcie zmieniania nazw od katalogów najbardziej
+            // zagnieżdżonych
 
+            Console.WriteLine("||  Skrót nazw katalogów i plików w bazie DICOM by ADMIN  ||");
+            Console.WriteLine("||  - - - - - - - - - - - - - - - - - - - - - - - - - -   ||\n");
 
-            //string[] args1 = { "D:\\ZSI\\kolos1\\zad2 - Kopia" };
-
-
-            // Zamknięcie na wypadek pustego przekazania
+            // Zamknięcie na wypadek pustego przekazania do programu
             if (args.Length == 0 || (System.IO.File.Exists(args[0])))
-            {
-                Console.WriteLine("Przenieś katalog na plik programu, by posprzątać podkatalogi i nazwy plików.");
+            {               
+                Console.WriteLine("Przeciągnij katalog bazy do posprzątania na ikonkę programu :)");
+                Console.WriteLine("Naciśnij cokolwiek, by zamknąć . . .");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
+           
+            // Tworzenie listy na pliki i katoalogi
+            List<string> foldery = new List<string>(args);
+            List<string> pliki = new List<string>();
 
-
-            // Tworzenie listy plików i katalogów
-            List<string> sciezkiFolderow = new List<string>(args);
-            List<string> sciezkiPlikow = new List<string>();
-
-            // Odnajdywanie plików i katalogów
-            for (int i = 0; i < sciezkiFolderow.Count; i++)
+            //----------------------------------------------------------------
+            // Odnajdywanie ścieżek do plików i katalogów
+            Console.WriteLine("Przeszukiwanie folderu...");
+            for (int i = 0; i < foldery.Count; i++)
             {
-                sciezkiFolderow.AddRange(System.IO.Directory.GetDirectories(sciezkiFolderow[i]));
-                sciezkiPlikow.AddRange(System.IO.Directory.GetFiles(sciezkiFolderow[i]));
+                foldery.AddRange(System.IO.Directory.GetDirectories(foldery[i]));
+                pliki.AddRange(System.IO.Directory.GetFiles(foldery[i]));
             }
 
+            //---------------------------------------------------------------
+            // Zmiana nazw plików na krótsze - OPERACJA NA PLIKACH
+            foreach (string plik in pliki)
+                if (plik.Contains("OBRAZ"))
+                    System.IO.File.Move(plik, plik.Replace("OBRAZ", "IM"));
+            
 
-            // Zmiana nazw plików na krótsze
-            for (int i = 0; i < sciezkiPlikow.Count; i++)
-            {                
-                string nowaSciezka = sciezkiPlikow[i].Remove(sciezkiPlikow[i].LastIndexOf('\\')+1);
-                nowaSciezka+="IM"+i.ToString();
-                if (sciezkiPlikow[i]!=nowaSciezka)
-                    System.IO.File.Move(sciezkiPlikow[i], nowaSciezka);
-            }
 
+            // ---------------------------------------------------------------
+            // Zmiana nazw katalogów na krótsze
+
+            // Tworzenie list na ścieżki do folderów; sort czyli posortowane, gotowe czyli przetworzone
             List<string> folderySort = new List<string>();
             List<string> folderyGotowe = new List<string>();
-            // Zmiana nazw katalogów na krótsze
-            foreach (string s in SortByLength(sciezkiFolderow))
+            
+            // Sortowanie od długości ścieżki dostępu potrzebne, by móc zsynchronizować listy ze
+            // ścieżkami źródłowymi i ścieżkami docelowymi.
+            // NIEZMIERNIE WAŻNA jest kolejność zmian nazw katalogów. Patrz założenia
+            foreach (string s in SortByLength(foldery))
                 folderySort.Add(s);
 
+            // Tworzenie nowych ścieżek dostępu. Z każdej ścieżki jest brana nazwa ostatniego katalogu
+            // Nazwa zostaje skrócona do 2 liter + iterator, by nie było 2ch katalogów o tej samej nazwie.
             string temp="";
             int iteracja= 1;
             foreach (string sciezka in folderySort)
             {
-                
-                // Cięcie ściezki folderu na nazwy podfolderów
                 string[] folder = sciezka.Split('\\');
-                // Jeżeli długość nazwy ostatniego folderu jest dłuższa od 3 znaków
                 if (folder[folder.Length - 1].Length >= 3)
                 {
-                    // Usuń te nadmiarowe znaki zaczynając od 3-ciego
                     folder[folder.Length - 1] = folder[folder.Length - 1].Remove(2);
-                    // Jesli przypadkiem nazwa folderu jest 
                     if (temp != folder[folder.Length - 1])
                     {
                         temp = folder[folder.Length - 1];
@@ -83,36 +89,42 @@ namespace Zmiana_nazw_plików_i_katalogów
                 sciezkaCala = sciezkaCala.Remove(sciezkaCala.Length - 1);
                 folderyGotowe.Add(sciezkaCala);
             }
-                  
-            StreamWriter sr = new StreamWriter(args[0] + "zestawienie.txt");
+                
+            // Zapisanie nowej struktury katalogów i plików do txt
+            StreamWriter sr = new StreamWriter(args[0] + "_zestawienie.txt");
+            sr.WriteLine("ZESTAWIENIE - znaczenie mają tylko nazwy ostatnich katalogów w każdej ścieżce dostępu");
+            sr.WriteLine("\n====== KATALOGI =======");
             folderyGotowe.ForEach(delegate(String folder) { sr.WriteLine(folder); });
-            //pliki.ForEach(delegate(String plik) { sr.WriteLine(plik); });
-            sr.Flush();
-            sr.Close();
-            Console.WriteLine("Zapisano zrzut drzewa katalogów");
+            sr.Flush(); sr.Close();
+            Console.WriteLine("Zapisano zrzut nowego drzewa katalogów do pliku");
 
+            // Takie tam zabezpieczenie, na wypadek gdyby lista źródłowa i lista docelowa jednak nie były sobie równe...
             if (folderySort.Count != folderyGotowe.Count)
-            {
-                Console.WriteLine("Nierówna ilość elementów! Sprawdź foldery");
-            }
+                Console.WriteLine("Nierówna ilość ścieżek! Sprawdź foldery, bo coś się skopało");
             else
             {
-                for (int ale = 0; ale < folderyGotowe.Count; ale++)
+                // Dla każdego katalogu ze ściezki źródłowej zmień jego nazwę na taką jak w ścieżce docelowej.
+                for (int piwo = 0; piwo < folderyGotowe.Count; piwo++)
                 {
-                    if (folderySort[ale]!=folderyGotowe[ale])
-                        System.IO.Directory.Move(folderySort[ale], folderyGotowe[ale]);
-                    //Console.WriteLine(ale);
+                    // Zmień nazwę tylko gdy mają różne nazwy - inaczej nazwa już jest krótka, nie ma co zmieniać
+                    if (folderySort[piwo]!=folderyGotowe[piwo])
+                        // Zmiana nazwy katalogu - OPERACJE NA KATALOGACH
+                        System.IO.Directory.Move(folderySort[piwo], folderyGotowe[piwo]);
                 }
             }
 
-            Console.WriteLine("Naciśnij cokolwiek by zakończyć . . .");
+            Console.WriteLine("Zmiana katalogów zakończyła się sukcesem!\nNaciśnij cokolwiek, by zamknąć . . .");
             Console.ReadKey();
         }
 
-        // Sortowanie listy od najdłuższej ścieżki do najkrótszej
+
+
+
+
+        // Sortowanie jakiejkolwiek listy od najdłuższej ścieżki do najkrótszej
         static IEnumerable<string> SortByLength(IEnumerable<string> e)
         {
-            // Uzycie LINQ do zwrócenia posortowanej tablicy
+            // LINQ zwraca posortowaną kopię wsadzonej listy...
             var sorted = from s in e
                          orderby s.Length descending
                          select s;
