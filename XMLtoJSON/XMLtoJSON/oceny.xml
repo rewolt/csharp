@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oceny>
+    <przedmiot nazwa="Matematyka">
+        <student imie="Jan" nazwisko="Kowalski" id="1">
+            <ocena typ="kolokwium" data="2015-01-13">
+                3.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                4.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                4.5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                5
+            </ocena>
+        </student>
+        <student imie="Michał" nazwisko="Nowak" id="2">
+            <ocena typ="kolokwium" data="2015-01-13">
+                5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                4
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                4.5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                3
+            </ocena>
+        </student>
+        <student imie="Łukasz" nazwisko="Testowy" id="3">
+            <ocena typ="kolokwium" data="2015-01-13">
+                4.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                3
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                4
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                3.5
+            </ocena>
+        </student>
+    </przedmiot>
+    <przedmiot nazwa="Programowanie obiektowe">
+        <student imie="Jan" nazwisko="Kowalski" id="1">
+            <ocena typ="kolokwium" data="2015-01-15">
+                3.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-26">
+                4.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-03">
+                4.5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-27">
+                5
+            </ocena>
+        </student>
+        <student imie="Michał" nazwisko="Nowak" id="2">
+            <ocena typ="kolokwium" data="2015-01-15">
+                4.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-26">
+                4
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-03">
+                4
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-27">
+                5
+            </ocena>
+        </student>
+        <student imie="Łukasz" nazwisko="Testowy" id="3">
+            <ocena typ="kolokwium" data="2015-01-15">
+                5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-26">
+                5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                3
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-27">
+                5
+            </ocena>
+        </student>
+    </przedmiot>
+    <przedmiot nazwa="Programowanie proceduralne">
+        <student imie="Jan" nazwisko="Kowalski" id="1">
+            <ocena typ="kolokwium" data="2015-01-13">
+                3
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                4
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                4
+            </ocena>
+        </student>
+        <student imie="Łukasz" nazwisko="Testowy" id="3">
+            <ocena typ="kolokwium" data="2015-01-13">
+                4
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                3.5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                4
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                3.5
+            </ocena>
+        </student>
+        <student imie="Michał" nazwisko="Nowak" id="2">
+            <ocena typ="kolokwium" data="2015-01-13">
+                3
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                3
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                4.5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                4
+            </ocena>
+        </student>
+        <student imie="Adrian" nazwisko="Losowy" id="4">
+            <ocena typ="kolokwium" data="2015-01-13">
+                5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-01-16">
+                5
+            </ocena>
+            <ocena typ="zadanie domowe" data="2015-02-13">
+                5
+            </ocena>
+            <ocena typ="kolokwium" data="2015-02-17">
+                5
+            </ocena>
+        </student>
+    </przedmiot>
+</oceny>
