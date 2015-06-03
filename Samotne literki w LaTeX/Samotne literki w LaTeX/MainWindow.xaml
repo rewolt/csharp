@@ -1,29 +1,38 @@
 ﻿<Window x:Class="Samotne_literki_w_LaTeX.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="304" Width="520">
-    <StackPanel>
+        Title="Samotne literki w LaTeX" Height="335" Width="550" ResizeMode="NoResize">
+    <Window.Resources>
+        <BitmapImage x:Key="Info" UriSource="./ImageResources/info.png"/>
+        <BitmapImage x:Key="Ok" UriSource="./ImageResources/ok.png"/>
+    </Window.Resources>
+    <StackPanel Background="#FFF5F2F2">
         <StackPanel.Resources>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="0,10,0,10"/>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="5,0,0,0"/>
             </Style>
         </StackPanel.Resources>
+        <Grid Height="50" Margin="0,10,0,10">
+            <Rectangle Stroke="#2980b9" StrokeThickness="2"/>
+            <Image x:Name="infoImage" Source="{StaticResource ResourceKey=Info}" Height="40" Width="40" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <Label x:Name="infoText" Content="By załadować plik szybciej, możesz go po prostu przeciągnąć na ikonę exe programu" Margin="55,10,0,0"/>
+        </Grid>
         <Label Content="Wczytaj plik z:"/>
-        <WrapPanel>
-            <TextBox x:Name="tb_wczytaj" Height="23" Width="480" TextWrapping="Wrap" IsEnabled="False" Text=""/>
+        <WrapPanel Height="25">
+            <TextBox x:Name="tb_wczytaj" Height="Auto" Width="500" TextWrapping="Wrap" IsReadOnly="True" Text=""/>
             <Button x:Name="bt_wczytaj" Content="..." Width="20" Click="bt_wczytaj_Click"/>
         </WrapPanel>
-        <Label Content="Zapisz plik jako:"/>
-        <WrapPanel>
-            <TextBox x:Name="tb_zapisz" Height="23" Width="480" TextWrapping="Wrap" IsEnabled="False" Text=""/>
+        <Label Content="Zapisz plik z &quot;~&quot; jako:"/>
+        <WrapPanel Height="25">
+            <TextBox x:Name="tb_zapisz" Height="Auto" Width="500" TextWrapping="Wrap" IsReadOnly="True" Text=""/>
             <Button x:Name="bt_zapisz" Content="..." Width="20" Click="bt_zapisz_Click"/>
         </WrapPanel>
-        <Label Content="Zapisz backup jako:"/>
-        <WrapPanel>
-            <TextBox x:Name="tb_zapisz_backup" Height="23" Width="480" TextWrapping="Wrap" IsEnabled="False" Text=""/>
+        <Label Content="Zapisz backup oryginału jako:"/>
+        <WrapPanel Height="25">
+            <TextBox x:Name="tb_zapisz_backup" Height="Auto" Width="500" TextWrapping="Wrap" IsReadOnly="True" Text=""/>
             <Button x:Name="bt_zapisz_backup" Content="..." Width="20" Click="bt_zapisz_backup_Click"/>
         </WrapPanel>
-        <Button x:Name="bt_konwertuj" Height="35" Width="200" Content="Konwertuj i zapisz" Click="bt_konwertuj_Click"/>
+        <Button x:Name="bt_konwertuj" Height="35" Width="200" Margin="0,20,0,0" Content="Konwertuj i zapisz" Click="bt_konwertuj_Click"/>
 
     </StackPanel>
 </Window>

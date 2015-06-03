@@ -24,7 +24,7 @@ namespace Samotne_literki_w_LaTeX
                 }
             }
             // Create main application window, starting minimized if specified
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(e.Args);
             mainWindow.Show();
         }
     }

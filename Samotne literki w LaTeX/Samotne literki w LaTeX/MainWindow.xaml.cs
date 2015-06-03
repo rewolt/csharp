@@ -24,45 +24,49 @@ namespace Samotne_literki_w_LaTeX
         string odczytLokalizacja = "";
         string zapisLokalizacja = "";
         string zapisBackupLokalizacja = "";
+        string[] args;
 
-        public MainWindow()
+        public MainWindow(string [] args)
         {
+            this.args = args;
             InitializeComponent();
+            if (args.Length != 0)
+            {
+                odczytLokalizacja = args[0];
+                updateLokalizacji();
+                infoText.Content = "Zmień domyślne nazwy lub konwertuj od razu";
+            }
         }
 
         private void bt_konwertuj_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("chuj");
+            if (odczytLokalizacja.Equals(""))
+                return;
+            string tekst = Pliki.Odczytaj(odczytLokalizacja);
+            Pliki.Zapisz(tekst, zapisBackupLokalizacja);
+            Konwerter konw = new Konwerter(tekst);
+            Pliki.Zapisz(konw.Konwertuj(), zapisLokalizacja);
+            infoText.FontSize = 16;
+            infoText.Content = "POMYSLNIE PRZEKONWERTOWANO I ZAPISANO :)";
         }
 
         private void bt_wczytaj_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Plik .tex|*.tex";
-            openFile.Title = "Wybierz plik do odczytu...";
-            openFile.ShowDialog();
-            odczytLokalizacja = openFile.FileName;
+            odczytLokalizacja = Pliki.DialogOtworzPlik();
             tb_wczytaj.Text = odczytLokalizacja;
             updateLokalizacji();
         }
 
         private void bt_zapisz_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Plik .tex|*.tex";
-            saveFile.Title = "Zapisz plik jako...";
-            saveFile.ShowDialog();
-            zapisLokalizacja = saveFile.FileName;
+
+            zapisLokalizacja = Pliki.DialogZapiszPlik();
             tb_zapisz.Text = zapisLokalizacja;
         }
 
         private void bt_zapisz_backup_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Plik .tex|*.tex";
-            saveFile.Title = "Zapisz plik jako...";
-            saveFile.ShowDialog();
-            zapisBackupLokalizacja = saveFile.FileName;
+            zapisBackupLokalizacja = Pliki.DialogZapiszPlik();
             tb_zapisz_backup.Text = zapisLokalizacja;
         }
 
@@ -70,7 +74,8 @@ namespace Samotne_literki_w_LaTeX
         {
             zapisLokalizacja = odczytLokalizacja;
             zapisBackupLokalizacja = zapisLokalizacja;
-            zapisBackupLokalizacja = zapisBackupLokalizacja.Insert(zapisBackupLokalizacja.LastIndexOf('.'), "_BACKUP");
+            zapisBackupLokalizacja = zapisBackupLokalizacja.Insert(zapisBackupLokalizacja.LastIndexOf('.'), String.Format("(BACKUP[{0:00}.{1:00}.{2}][{3}.{4}.{5}])", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second));
+            tb_wczytaj.Text = odczytLokalizacja;
             tb_zapisz.Text = zapisLokalizacja;
             tb_zapisz_backup.Text = zapisBackupLokalizacja;
         }
