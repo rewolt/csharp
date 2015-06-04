@@ -15,14 +15,14 @@ namespace Samotne_literki_w_LaTeX
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            bool startMinimized = false;
-            for (int i = 0; i != e.Args.Length; ++i)
-            {
-                if (e.Args[i] == "/StartMinimized")
-                {
-                    startMinimized = true;
-                }
-            }
+            //bool startMinimized = false;
+            //for (int i = 0; i != e.Args.Length; ++i)
+            //{
+            //    if (e.Args[i] == "/StartMinimized")
+            //    {
+            //        startMinimized = true;
+            //    }
+            //}
             // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow(e.Args);
             mainWindow.Show();

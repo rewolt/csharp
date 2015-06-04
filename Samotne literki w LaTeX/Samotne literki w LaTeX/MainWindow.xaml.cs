@@ -53,6 +53,8 @@ namespace Samotne_literki_w_LaTeX
         private void bt_wczytaj_Click(object sender, RoutedEventArgs e)
         {
             odczytLokalizacja = Pliki.DialogOtworzPlik();
+            if (odczytLokalizacja.Equals(""))
+                return;
             tb_wczytaj.Text = odczytLokalizacja;
             updateLokalizacji();
         }
