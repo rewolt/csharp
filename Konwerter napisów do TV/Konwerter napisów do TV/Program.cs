@@ -283,7 +283,7 @@ namespace Konwerter_napisow
         static void WypiszNaglowek()
         {
             Console.WriteLine("|| ------------------------------------------------------------------ ||");
-            Console.WriteLine("||                   Konwerter napisów do TV v2.3                     ||");
+            Console.WriteLine("||                   Konwerter napisów do TV v2.4                     ||");
             Console.WriteLine("|| ------------------------------------------------------------------ ||");
             Console.WriteLine();
         }
@@ -349,24 +349,31 @@ namespace Konwerter_napisow
             Console.WriteLine(args[0].ToString() + "\n");
             Console.WriteLine("DLA FORMATU .SRT TYLKO OPCJA PODMIANY POLSKICH ZNAKÓW.\n");
 
-            string zapisywany = args[0].Remove(args[0].Length - 4);
+            
+            string sciezkaDostepu = args[0].ToString();
+            string sciezkaBackupu = sciezkaDostepu + "-backup";
+            System.IO.File.Move(sciezkaDostepu, sciezkaBackupu);
             string calosc = "";
 
             try
             {
                 // Utworzenie readera i writera
-                StreamReader str = new StreamReader(args[0], Encoding.Default);
-                StreamWriter stwr = new StreamWriter(zapisywany + "-noPL.srt", false, Encoding.Default);
+                StreamReader str = new StreamReader(sciezkaBackupu, Encoding.Default);
+                StreamWriter stwr = new StreamWriter(sciezkaDostepu, false, Encoding.Default);
 
                 calosc = str.ReadToEnd();
                 calosc = PodmianaZnakow(calosc);
                 stwr.Write(calosc);
 
+                str.Dispose();
                 str.Close();
+                
+                //Zmiana nazwy starego pliku na jakiś backup i wrzucenie nowej zawartości pod starą nazwę
+                
                 stwr.Flush();
                 stwr.Close();
                 Console.WriteLine("\n-------------------");
-                Console.WriteLine("GOTOWE I ZAPISANE!\nNazwa pliku: {0}-noPL.srt\n\nKliknij cokolwiek by zakończyć ;)", zapisywany.Substring(zapisywany.LastIndexOf('\\') + 1, zapisywany.Length - zapisywany.LastIndexOf('\\') - 1));
+                Console.WriteLine("GOTOWE I ZAPISANE!\nNazwa pliku: {0}\n\nKliknij cokolwiek by zakończyć ;)", sciezkaDostepu.Substring(sciezkaDostepu.LastIndexOf('\\') + 1, sciezkaDostepu.Length - sciezkaDostepu.LastIndexOf('\\') - 1));
             }
 
             catch (Exception e)
